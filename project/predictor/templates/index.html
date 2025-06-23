@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body class="d-flex" style="height: 100%;">
+        <div class="d-flex align-items-center row text-center" style="width: 60%;margin:10px;border: 3px solid silver;border-radius: 10px;">
+            <form action="" method="post">{% csrf_token %}   
+                <div class="porpiedadesTierra col container-sm"style='margin:10px'>
+                    <figure class="text-start">
+                        <blockquote class="blockquote">
+                            <p class="lead" style="margin-bottom: 10px;font-size: 2rem;">Propiedades del suelo</p>
+                        </blockquote>
+                    </figure>
+                    
+                    <div class="input-group mb-3">
+                        <span for="nitrogeno" class="input-group-text">Nitrogeno</span>
+                        <input name="nitrogeno" class="form-control" type="number" required>
+                        <span for="fosforo" class="input-group-text">Fosforo</span>
+                        <input name="fosforo" class="form-control" type="number" required>
+                    </div>
+            
+                    <div class="input-group mb-3">
+                        <span for="potasio" class="input-group-text">Potasio</span>
+                        <input name="potasio" class="form-control" type="number" required>
+                        <span for="ph" class="input-group-text">ph</span>
+                        <input name="ph"  class="form-control" type="number" required>
+                    </div>  
+                </div>
+                <div class="propiedadesClima col container-sm" style='margin:10px;'> 
+                    <figure class="text-start">
+                        <blockquote class="blockquote">
+                            <p class="lead" style="margin-bottom: 10px;font-size: 2rem;">Clima</p>
+                        </blockquote>
+                    </figure>
+                    
+                    <div class="input-group">
+                        <span for="temperatura" class="input-group-text">Temperatura</span>
+                        <input name="temperatura" class="form-control" type="number" required>
+                        <span for="humedad" class="input-group-text">Humedad</span>
+                        <input name="humedad" class="form-control" type="number" required>
+                        <span for="lluvia" class="input-group-text">Lluvia</span>
+                        <input name="lluvia" class="form-control" type="number" required>
+                    </div>                    
+                </div>
+                <div class="" style="margin: 20px;">
+                    <input type="submit" text="Enviar" class="btn btn-outline-success btn-lg">
+                </div>
+            </form>
+        </div>
+        <div class="row text-center" style="width: 40%;margin:10px;border: 3px solid silver;border-radius: 10px;">
+            <blockquote class="blockquote">
+                <p class="lead" style="margin-bottom: 10px; font-size: 2rem;">Posibles cultivos</p>
+            </blockquote>
+            {% if datos %}
+            <div class="container-sm">
+                <ul class="list-group">
+                    {% for x,y in datos %}
+                        <li class="list-group-item list-group-item-success">Cultivo de {{x}}</li>
+                        <li class="list-group-item">Porcentaje de exito {{y}}%</li>
+                        <br>
+                    {% endfor %}
+                </ul>
+                </div>
+            {% endif%}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    </body>
+</html>
